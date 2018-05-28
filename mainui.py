@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
+
 from PyQt5 import QtCore, QtGui, QtWidgets
+import resource_sheet
 
 
 class Ui_DCK_MainWin(object):
@@ -9,6 +11,9 @@ class Ui_DCK_MainWin(object):
         DCK_MainWin.resize(200, 254)
         DCK_MainWin.setMinimumSize(QtCore.QSize(200, 254))
         DCK_MainWin.setMaximumSize(QtCore.QSize(200, 254))
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/images/DNS Cache Killer/icon.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        DCK_MainWin.setWindowIcon(icon)
         DCK_MainWin.setStyleSheet("background-color: rgb(56, 70, 89);")
         self.centralwidget = QtWidgets.QWidget(DCK_MainWin)
         self.centralwidget.setObjectName("centralwidget")
@@ -50,6 +55,16 @@ class Ui_DCK_MainWin(object):
         self.clearButton.setText(_translate("DCK_MainWin", "Clear DNS"))
         self.visitButton.setText(_translate("DCK_MainWin", "Visit GitHub"))
         self.closeButton.setText(_translate("DCK_MainWin", "Close Program"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    DCK_MainWin = QtWidgets.QMainWindow()
+    ui = Ui_DCK_MainWin()
+    ui.setupUi(DCK_MainWin)
+    DCK_MainWin.show()
+    sys.exit(app.exec_())
 
 
 if __name__ == "__main__":
