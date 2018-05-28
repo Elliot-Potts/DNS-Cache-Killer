@@ -3,6 +3,19 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import resource_sheet
+import webbrowser
+import ctypes
+import sys
+import os
+
+
+def admin_checks():
+    try:
+        adminState = os.getuid() == 0
+    except AttributeError:
+        adminState = ctypes.windll.shell32.IsUserAnAdmin() != 0
+
+    return adminState
 
 
 class Ui_DCK_MainWin(object):
@@ -60,12 +73,54 @@ class Ui_DCK_MainWin(object):
 class Logic(QtWidgets.QMainWindow, Ui_DCK_MainWin):
     def __init__(self, *args, **kwargs):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
+
+        admin = admin_checks()
+
+        if admin:
+            pass
+        else:
+            def closethis():
+                quit()
+
+            msg = QtWidgets.QMessageBox()
+            msg.setIcon(QtWidgets.QMessageBox.Critical)
+
+            icon = QtGui.QIcon()
+            icon.addPixmap(QtGui.QPixmap(":/images/DNS Cache Killer/icon.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            msg.setWindowIcon(icon)
+
+            msg.setText("DCK Error")
+            msg.setInformativeText("Please run the application with administrator privileges, or this will not work.")
+            msg.setWindowTitle("DCK Error")
+            # msg.setWindowIcon(QtWidgets.QMessageBox.Critical)
+            msg.setDetailedText(
+                "Please note:\n\nThis program needs administrative rights in order to run the necessary commands.")
+            msg.setStandardButtons(QtWidgets.QMessageBox.Ok | QtWidgets.QMessageBox.Cancel)
+            msg.buttonClicked.connect(closethis)
+
+            retval = msg.exec_()
+            print("value of pressed message box button:", retval)
+
         self.setupUi(self)
         self.show()
 
+        self.clearButton.clicked.connect(self.clearCache)
+        self.visitButton.clicked.connect(self.visitSite)
+        self.closeButton.clicked.connect(self.closeProgram)
+
+    def clearCache(self):
+        print(" [+] Clearing DNS cache")
+
+    def visitSite(self):
+        print(" [+] Visiting website")
+        webbrowser.open("https://github.com/Elliot-Potts/DNS-Cache-Killer")
+
+    def closeProgram(self):
+        print(" [+] Closing program")
+        quit()
+
 
 if __name__ == "__main__":
-    import sys
     app = QtWidgets.QApplication(sys.argv)
     DCK_MainWin = QtWidgets.QMainWindow()
     ui = Logic()
