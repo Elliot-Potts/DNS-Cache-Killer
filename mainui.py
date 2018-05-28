@@ -57,12 +57,17 @@ class Ui_DCK_MainWin(object):
         self.closeButton.setText(_translate("DCK_MainWin", "Close Program"))
 
 
+class Logic(QtWidgets.QMainWindow, Ui_DCK_MainWin):
+    def __init__(self, *args, **kwargs):
+        QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
+        self.setupUi(self)
+        self.show()
+
+
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     DCK_MainWin = QtWidgets.QMainWindow()
-    ui = Ui_DCK_MainWin()
-    ui.setupUi(DCK_MainWin)
-    DCK_MainWin.show()
+    ui = Logic()
     sys.exit(app.exec_())
 
