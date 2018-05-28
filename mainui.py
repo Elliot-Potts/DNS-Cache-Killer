@@ -100,7 +100,6 @@ class Logic(QtWidgets.QMainWindow, Ui_DCK_MainWin):
 
             retval = msg.exec_()
             print("value of pressed message box button:", retval)
-            quit()
 
         else:
             def closethis():
