@@ -80,7 +80,7 @@ class Logic(QtWidgets.QMainWindow, Ui_DCK_MainWin):
             pass
         else:
             def closethis():
-                quit()
+                sys.exit()
 
             msg = QtWidgets.QMessageBox()
             msg.setIcon(QtWidgets.QMessageBox.Critical)
@@ -100,7 +100,8 @@ class Logic(QtWidgets.QMainWindow, Ui_DCK_MainWin):
 
             retval = msg.exec_()
             print("value of pressed message box button:", retval)
-            quit()
+
+            sys.exit()
 
         self.setupUi(self)
         self.show()
@@ -113,7 +114,7 @@ class Logic(QtWidgets.QMainWindow, Ui_DCK_MainWin):
         print(" [+] Clearing DNS cache")
 
         def closethis():
-            quit()
+            sys.exit()
 
         msg = QtWidgets.QMessageBox()
         msg.setIcon(QtWidgets.QMessageBox.Information)
@@ -136,7 +137,7 @@ class Logic(QtWidgets.QMainWindow, Ui_DCK_MainWin):
         retval = msg.exec_()
         print("value of pressed message box button:", retval)
 
-        quit()
+        sys.exit()
 
 
     def visitSite(self):
@@ -145,7 +146,7 @@ class Logic(QtWidgets.QMainWindow, Ui_DCK_MainWin):
 
     def closeProgram(self):
         print(" [+] Closing program")
-        quit()
+        sys.exit()
 
 
 if __name__ == "__main__":
