@@ -77,30 +77,7 @@ class Logic(QtWidgets.QMainWindow, Ui_DCK_MainWin):
         admin = admin_checks()
 
         if admin:
-            def closethis():
-                quit()
-
-            msg = QtWidgets.QMessageBox()
-            msg.setIcon(QtWidgets.QMessageBox.Information)
-
-            icon = QtGui.QIcon()
-            icon.addPixmap(QtGui.QPixmap(":/images/DNS Cache Killer/icon.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-            msg.setWindowIcon(icon)
-
-            msg.setText("DCK Success")
-            msg.setInformativeText("Cleared your DNS Cache.")
-            msg.setWindowTitle("DNS Cleared")
-            # msg.setWindowIcon(QtWidgets.QMessageBox.Critical)
-            msg.setDetailedText(
-                "See your DNS entries below: \n\n{} \n\n [+] Cleared".format(os.popen("ipconfig /displaydns").read()))
-            msg.setStandardButtons(QtWidgets.QMessageBox.Ok | QtWidgets.QMessageBox.Cancel)
-            msg.buttonClicked.connect(closethis)
-
-            os.system("ipconfig /flushdns")
-
-            retval = msg.exec_()
-            print("value of pressed message box button:", retval)
-
+            pass
         else:
             def closethis():
                 quit()
@@ -123,7 +100,7 @@ class Logic(QtWidgets.QMainWindow, Ui_DCK_MainWin):
 
             retval = msg.exec_()
             print("value of pressed message box button:", retval)
-            # quit()
+            quit()
 
         self.setupUi(self)
         self.show()
@@ -134,6 +111,33 @@ class Logic(QtWidgets.QMainWindow, Ui_DCK_MainWin):
 
     def clearCache(self):
         print(" [+] Clearing DNS cache")
+
+        def closethis():
+            quit()
+
+        msg = QtWidgets.QMessageBox()
+        msg.setIcon(QtWidgets.QMessageBox.Information)
+
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/images/DNS Cache Killer/icon.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        msg.setWindowIcon(icon)
+
+        msg.setText("DCK Success")
+        msg.setInformativeText("Cleared your DNS Cache.")
+        msg.setWindowTitle("DNS Cleared")
+        # msg.setWindowIcon(QtWidgets.QMessageBox.Critical)
+        msg.setDetailedText(
+            "See your DNS entries below: \n\n{} \n\n [+] Cleared".format(os.popen("ipconfig /displaydns").read()))
+        msg.setStandardButtons(QtWidgets.QMessageBox.Ok | QtWidgets.QMessageBox.Cancel)
+        msg.buttonClicked.connect(closethis)
+
+        os.system("ipconfig /flushdns")
+
+        retval = msg.exec_()
+        print("value of pressed message box button:", retval)
+
+        quit()
+
 
     def visitSite(self):
         print(" [+] Visiting website")
