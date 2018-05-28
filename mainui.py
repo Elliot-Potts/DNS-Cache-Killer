@@ -66,13 +66,3 @@ if __name__ == "__main__":
     DCK_MainWin.show()
     sys.exit(app.exec_())
 
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    DCK_MainWin = QtWidgets.QMainWindow()
-    ui = Ui_DCK_MainWin()
-    ui.setupUi(DCK_MainWin)
-    DCK_MainWin.show()
-    sys.exit(app.exec_())
-
