@@ -100,6 +100,7 @@ class Logic(QtWidgets.QMainWindow, Ui_DCK_MainWin):
 
             retval = msg.exec_()
             print("value of pressed message box button:", retval)
+            quit()
 
         else:
             def closethis():
@@ -123,6 +124,7 @@ class Logic(QtWidgets.QMainWindow, Ui_DCK_MainWin):
 
             retval = msg.exec_()
             print("value of pressed message box button:", retval)
+            quit()
 
         self.setupUi(self)
         self.show()
