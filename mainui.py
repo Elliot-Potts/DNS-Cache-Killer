@@ -99,7 +99,6 @@ class Logic(QtWidgets.QMainWindow, Ui_DCK_MainWin):
             msg.buttonClicked.connect(closethis)
 
             retval = msg.exec_()
-            print("value of pressed message box button:", retval)
 
             sys.exit()
 
@@ -135,7 +134,6 @@ class Logic(QtWidgets.QMainWindow, Ui_DCK_MainWin):
         os.system("ipconfig /flushdns")
 
         retval = msg.exec_()
-        print("value of pressed message box button:", retval)
 
         sys.exit()
 
@@ -150,6 +148,12 @@ class Logic(QtWidgets.QMainWindow, Ui_DCK_MainWin):
 
 
 if __name__ == "__main__":
+    print("""
+  ___  _  _ ___    ___         _          _  ___ _ _         
+ |   \| \| / __|  / __|__ _ __| |_  ___  | |/ (_) | |___ _ _ 
+ | |) | .` \__ \ | (__/ _` / _| ' \/ -_) | ' <| | | / -_) '_|
+ |___/|_|\_|___/  \___\__,_\__|_||_\___| |_|\_\_|_|_\___|_|  
+   written by Elliot Potts (https://github.com/Elliot-Potts)""")
     app = QtWidgets.QApplication(sys.argv)
     DCK_MainWin = QtWidgets.QMainWindow()
     ui = Logic()
